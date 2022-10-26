@@ -1,9 +1,24 @@
-import React from "react";
+import { GoogleAuthProvider } from "firebase/auth";
+import React, { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { FaGithub, FaGoogle } from "react-icons/fa";
+import { AuthContext } from "../../../UserContext/UserContext";
+
+const googleProvider = new GoogleAuthProvider();
 const Login = () => {
+  const { googleUserRegister } = useContext(AuthContext);
+  const handleFrom = () => {};
+  const UserGoogle = (provider) => {
+    googleUserRegister(googleProvider)
+      .then((resul) => {
+        const user = resul.user;
+        console.log(user);
+      })
+      .catch((e) => console.error(e));
+  };
   return (
-    <div className="text-start">
+    <div className="text-start mt-5">
       <Form>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
@@ -23,7 +38,18 @@ const Login = () => {
         </Form.Group>
 
         <Button variant="primary" type="submit">
-          Submit
+          Log in
+        </Button>
+        <Button
+          onClick={UserGoogle}
+          variant="info"
+          className="mx-2"
+          title="Sing in With google"
+        >
+          <FaGoogle />
+        </Button>
+        <Button variant="info" title="Sing in With git">
+          <FaGithub />
         </Button>
       </Form>
     </div>
