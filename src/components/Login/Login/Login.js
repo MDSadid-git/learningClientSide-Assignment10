@@ -1,4 +1,4 @@
-import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import React, { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -6,11 +6,20 @@ import { FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../../UserContext/UserContext";
 
 const googleProvider = new GoogleAuthProvider();
+const gitProvider = new GithubAuthProvider();
 const Login = () => {
-  const { googleUserRegister } = useContext(AuthContext);
+  const { googleUserRegister, gitUserRegister } = useContext(AuthContext);
   const handleFrom = () => {};
-  const UserGoogle = (provider) => {
+  const UserGoogle = () => {
     googleUserRegister(googleProvider)
+      .then((resul) => {
+        const user = resul.user;
+        console.log(user);
+      })
+      .catch((e) => console.error(e));
+  };
+  const UserGit = () => {
+    gitUserRegister(gitProvider)
       .then((resul) => {
         const user = resul.user;
         console.log(user);
@@ -19,7 +28,7 @@ const Login = () => {
   };
   return (
     <div className="text-start mt-5">
-      <Form>
+      <Form onSubmit={handleFrom}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control type="email" name="email" placeholder="Enter email" />
@@ -48,7 +57,7 @@ const Login = () => {
         >
           <FaGoogle />
         </Button>
-        <Button variant="info" title="Sing in With git">
+        <Button onClick={UserGit} variant="info" title="Sing in With git">
           <FaGithub />
         </Button>
       </Form>

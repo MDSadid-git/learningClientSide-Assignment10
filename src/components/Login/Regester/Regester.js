@@ -4,14 +4,38 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../../UserContext/UserContext";
-import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
+
 const googleProvider = new GoogleAuthProvider();
+const gitProvider = new GithubAuthProvider();
 
 const Regester = () => {
-  const { googleUserRegister } = useContext(AuthContext);
-  const handleFrom = () => {};
-  const UserGoogle = (provider) => {
+  const { googleUserRegister, gitUserRegister, newUserRegister } =
+    useContext(AuthContext);
+  const handleFrom = (event) => {
+    event.preventDefault();
+    const from = event.target;
+    const email = from.email.value;
+    const password = from.password.value;
+    newUserRegister(email, password)
+      .then((resul) => {
+        const user = resul.user;
+        console.log(user);
+      })
+      .catch((e) => console.error(e));
+    console.log(email, password);
+    from.reset();
+  };
+  const UserGoogle = () => {
     googleUserRegister(googleProvider)
+      .then((resul) => {
+        const user = resul.user;
+        console.log(user);
+      })
+      .catch((e) => console.error(e));
+  };
+  const UserGit = () => {
+    gitUserRegister(gitProvider)
       .then((resul) => {
         const user = resul.user;
         console.log(user);
@@ -65,7 +89,7 @@ const Regester = () => {
         >
           <FaGoogle />
         </Button>
-        <Button variant="info" title="Sing in With git">
+        <Button onClick={UserGit} variant="info" title="Sing in With git">
           <FaGithub />
         </Button>
       </Form>
