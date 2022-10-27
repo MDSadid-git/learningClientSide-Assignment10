@@ -14,6 +14,7 @@ const Login = () => {
   const navigate = useNavigate();
   const { googleUserRegister, gitUserRegister, logInUser } =
     useContext(AuthContext);
+  const from2 = location.state?.from?.pathname || "/";
   const [merror, setError] = useState("");
   const handleFrom = (event) => {
     event.preventDefault();
@@ -25,13 +26,14 @@ const Login = () => {
         const user = result.user;
         // console.log(user);
         form.reset();
+        navigate(from2, { replace: true });
       })
       .catch((e) => {
         console.error(e);
         setError(e.message);
       });
   };
-  const from2 = location.state?.from?.pathname || "/";
+
   const UserGoogle = () => {
     googleUserRegister(googleProvider)
       .then((resul) => {
@@ -71,7 +73,7 @@ const Login = () => {
           />
         </Form.Group>
         <Form.Text className="text-muted">
-          already have a account <Link to={"/regester"}>go log in</Link>
+          no account <Link to={"/regester"}>go to regester in</Link>
         </Form.Text>
         <Form.Text className="text-muted">{merror}</Form.Text>
         <div className="mt-2">

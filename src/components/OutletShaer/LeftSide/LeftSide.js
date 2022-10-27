@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const LeftSide = () => {
   const [mern, setMern] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/MERN")
+    fetch("https://learning-server-side.vercel.app/MERN")
       .then((res) => res.json())
       .then((data) => setMern(data));
   }, []);

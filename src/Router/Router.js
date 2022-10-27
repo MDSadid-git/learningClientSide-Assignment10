@@ -22,7 +22,8 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/mernalldata"),
+        loader: () =>
+          fetch("https://learning-server-side.vercel.app/mernalldata"),
       },
       {
         path: "/home",
@@ -44,7 +45,9 @@ export const router = createBrowserRouter([
         path: "mernalldata/:id",
         element: <MernCart></MernCart>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/mernalldata/${params.id}`),
+          fetch(
+            `https://learning-server-side.vercel.app/mernalldata/${params.id}`
+          ),
       },
       {
         path: "/merncart",
@@ -54,7 +57,9 @@ export const router = createBrowserRouter([
         path: "/category/:id",
         element: <PrivateNews></PrivateNews>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/category/${params.id}`),
+          fetch(
+            `https://learning-server-side.vercel.app/category/${params.id}`
+          ),
       },
       {
         path: "courses",
@@ -68,7 +73,9 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/category/${params.id}`),
+          fetch(
+            `https://learning-server-side.vercel.app/category/${params.id}`
+          ),
       },
       {
         path: "/blog",

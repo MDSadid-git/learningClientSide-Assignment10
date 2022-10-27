@@ -5,11 +5,10 @@ import "./Courses.css";
 const Courses = () => {
   const [mern, setMern] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/mernalldata")
+    fetch("https://learning-server-side.vercel.app/mernalldata")
       .then((res) => res.json())
       .then((data) => setMern(data));
   }, []);
-  console.log(mern);
   return (
     <div className="newsCart m-5">
       {mern.map((n) => (
