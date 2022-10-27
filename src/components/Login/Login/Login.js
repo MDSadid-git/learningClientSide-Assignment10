@@ -3,17 +3,22 @@ import React, { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../UserContext/UserContext";
 
 const googleProvider = new GoogleAuthProvider();
 const gitProvider = new GithubAuthProvider();
 const Login = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const { googleUserRegister, gitUserRegister } = useContext(AuthContext);
   const handleFrom = () => {};
+  const from2 = location.state?.from?.pathname || "/";
   const UserGoogle = () => {
     googleUserRegister(googleProvider)
       .then((resul) => {
         const user = resul.user;
+        navigate(from2, { replace: true });
         console.log(user);
       })
       .catch((e) => console.error(e));
@@ -23,6 +28,7 @@ const Login = () => {
       .then((resul) => {
         const user = resul.user;
         console.log(user);
+        navigate(from2, { replace: true });
       })
       .catch((e) => console.error(e));
   };

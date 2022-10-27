@@ -5,6 +5,9 @@ import Main from "../Layout/Main";
 import Login from "../components/Login/Login/Login";
 import Regester from "../components/Login/Regester/Regester";
 import ErrorPage from "./Error/ErrorPage";
+import MernCart from "../components/pages/MernCart/MernCart";
+import PrivateNews from "../components/pages/NewsCarts/PrivateNews/PrivateNews";
+import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -15,6 +18,7 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+        loader: () => fetch("http://localhost:5000/mernalldata"),
       },
       {
         path: "/home",
@@ -31,6 +35,26 @@ export const router = createBrowserRouter([
       {
         path: "/regester",
         element: <Regester></Regester>,
+      },
+      {
+        path: "mernalldata/:id",
+        element: <MernCart></MernCart>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/mernalldata/${params.id}`),
+      },
+      {
+        path: "/merncart",
+        element: <MernCart></MernCart>,
+      },
+      {
+        path: "/category/:id",
+        element: (
+          <PrivateRoute>
+            <PrivateNews></PrivateNews>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/category/${params.id}`),
       },
     ],
   },

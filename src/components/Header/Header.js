@@ -25,10 +25,10 @@ const Header = () => {
           <Navbar.Brand>
             <Link to="/home" className="text-light text-decoration-none">
               MERN LEARNING
-              <small className="ms-3 fs-3" onClick={() => setOn(!on)}>
-                {on ? <FaToggleOff /> : <FaToggleOn />}
-              </small>
             </Link>
+            <small className="ms-3 fs-3" onClick={() => setOn(!on)}>
+              {on ? <FaToggleOff /> : <FaToggleOn />}
+            </small>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">

@@ -5,6 +5,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import LeftSide from "../components/OutletShaer/LeftSide/LeftSide";
+import Footer from "../components/Footer/Footer";
 const Main = () => {
   return (
     <div>
@@ -19,6 +20,7 @@ const Main = () => {
           </Col>
         </Row>
       </Container>
+      <Footer></Footer>
     </div>
   );
 };
