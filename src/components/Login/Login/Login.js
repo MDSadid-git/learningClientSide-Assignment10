@@ -3,8 +3,9 @@ import React, { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { FaGithub, FaGoogle } from "react-icons/fa";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../UserContext/UserContext";
+import "./Login.css";
 
 const googleProvider = new GoogleAuthProvider();
 const gitProvider = new GithubAuthProvider();
@@ -22,6 +23,7 @@ const Login = () => {
     logInUser(email, password)
       .then((result) => {
         const user = result.user;
+        // console.log(user);
         form.reset();
       })
       .catch((e) => {
@@ -50,7 +52,11 @@ const Login = () => {
   };
   return (
     <div className="text-start mt-5">
-      <Form onSubmit={handleFrom}>
+      <Form
+        onSubmit={handleFrom}
+        style={{ width: "25rem" }}
+        className="m-auto loginBg"
+      >
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control type="email" name="email" placeholder="Enter email" />
@@ -64,8 +70,11 @@ const Login = () => {
             placeholder="Password"
           />
         </Form.Group>
+        <Form.Text className="text-muted">
+          already have a account <Link to={"/regester"}>go log in</Link>
+        </Form.Text>
         <Form.Text className="text-muted">{merror}</Form.Text>
-        <div>
+        <div className="mt-2">
           <Button variant="primary" type="submit">
             Log in
           </Button>

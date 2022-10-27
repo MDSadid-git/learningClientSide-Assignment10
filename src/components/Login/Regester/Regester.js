@@ -6,7 +6,8 @@ import { FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../../UserContext/UserContext";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import toast from "react-hot-toast";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import "./Regester.css";
 
 const googleProvider = new GoogleAuthProvider();
 const gitProvider = new GithubAuthProvider();
@@ -74,7 +75,11 @@ const Regester = () => {
   };
   return (
     <div className="text-start mt-5">
-      <Form onSubmit={handleFrom}>
+      <Form
+        onSubmit={handleFrom}
+        style={{ width: "25rem" }}
+        className="m-auto loginBg"
+      >
         <Form.Group className="mb-3" controlId="formBasicName">
           <Form.Label>Your Name</Form.Label>
           <Form.Control name="name" type="text" placeholder="Your Name" />
@@ -103,6 +108,9 @@ const Regester = () => {
             required
           />
         </Form.Group>
+        <Form.Text className="text-muted">
+          already have a account <Link to={"/login"}>go log in</Link>
+        </Form.Text>
         <Form.Text className="text-muted">{merror}</Form.Text>
         <div className="mt-2">
           <Button variant="primary" type="submit">

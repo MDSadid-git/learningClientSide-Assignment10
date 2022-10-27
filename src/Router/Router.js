@@ -9,6 +9,8 @@ import MernCart from "../components/pages/MernCart/MernCart";
 import PrivateNews from "../components/pages/NewsCarts/PrivateNews/PrivateNews";
 import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 import Courses from "../components/pages/Courses/Courses";
+import Enroll from "../components/pages/EnRoll/Enroll";
+import Blog from "../components/pages/Blog/Blog";
 
 export const router = createBrowserRouter([
   {
@@ -49,17 +51,23 @@ export const router = createBrowserRouter([
       },
       {
         path: "/category/:id",
-        element: (
-          <PrivateRoute>
-            <PrivateNews></PrivateNews>
-          </PrivateRoute>
-        ),
+        element: <PrivateNews></PrivateNews>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/category/${params.id}`),
       },
       {
         path: "courses",
         element: <Courses></Courses>,
+      },
+      {
+        path: "/category/:id",
+        element: <Enroll></Enroll>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/category/${params.id}`),
+      },
+      {
+        path: "/blog",
+        element: <Blog></Blog>,
       },
     ],
   },

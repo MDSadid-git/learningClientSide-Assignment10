@@ -1,11 +1,11 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import { Button } from "react-bootstrap";
 
 const PrivateNews = () => {
   const mainData = useLoaderData();
-  console.log(mainData);
+  //   console.log(mainData);
   return (
     <div className="mb-5 m-5 pt-1">
       <Card>
@@ -18,7 +18,13 @@ const PrivateNews = () => {
           <Card.Title>{mainData?.title}</Card.Title>
           <Card.Text>{mainData?.details}</Card.Text>
           {mainData?.download ? <Button>{mainData?.download}</Button> : ""}
-          {mainData?.downloadss ? <Button>{mainData?.downloadss}</Button> : ""}
+          {mainData?.downloadss ? (
+            <Link to={`/category/${mainData.id}`}>
+              <Button>{mainData?.downloadss}</Button>
+            </Link>
+          ) : (
+            ""
+          )}
         </Card.Body>
       </Card>
     </div>

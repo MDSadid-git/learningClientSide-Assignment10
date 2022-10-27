@@ -44,7 +44,13 @@ const Header = () => {
                   className="text-light text-decoration-none mt-2 me-2"
                   to="/about"
                 >
-                  About
+                  FAQ
+                </Link>
+                <Link
+                  className="text-light text-decoration-none mt-2 me-2"
+                  to="/blog"
+                >
+                  Blog
                 </Link>
                 <Link
                   className="text-light text-decoration-none mt-2 me-2"

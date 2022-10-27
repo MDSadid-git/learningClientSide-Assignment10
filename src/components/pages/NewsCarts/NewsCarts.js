@@ -4,6 +4,7 @@ import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 
 const NewsCarts = ({ n: { title, img, details, id, pay } }) => {
+  console.log(id);
   return (
     <div className="text-start">
       <Card style={{ width: "18rem" }}>
