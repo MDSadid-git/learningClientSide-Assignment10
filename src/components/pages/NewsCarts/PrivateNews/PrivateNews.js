@@ -1,11 +1,15 @@
 import React from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import { Button } from "react-bootstrap";
 
 const PrivateNews = () => {
   const mainData = useLoaderData();
   //   console.log(mainData);
+  const naviget = useNavigate();
+  const handleBtn = () => {
+    naviget(`/enroll/${mainData.id}`);
+  };
   return (
     <div className="mb-5 m-5 pt-1">
       <Card>
@@ -19,9 +23,7 @@ const PrivateNews = () => {
           <Card.Text>{mainData?.details}</Card.Text>
           {mainData?.download ? <Button>{mainData?.download}</Button> : ""}
           {mainData?.downloadss ? (
-            <Link to={`/category/${mainData.id}`}>
-              <Button>{mainData?.downloadss}</Button>
-            </Link>
+            <Button onClick={handleBtn}>{mainData?.downloadss}</Button>
           ) : (
             ""
           )}

@@ -11,6 +11,7 @@ import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 import Courses from "../components/pages/Courses/Courses";
 import Enroll from "../components/pages/EnRoll/Enroll";
 import Blog from "../components/pages/Blog/Blog";
+import UserProfile from "../components/UserProfile/UserProfile";
 
 export const router = createBrowserRouter([
   {
@@ -60,14 +61,26 @@ export const router = createBrowserRouter([
         element: <Courses></Courses>,
       },
       {
-        path: "/category/:id",
-        element: <Enroll></Enroll>,
+        path: "/enroll/:id",
+        element: (
+          <PrivateRoute>
+            <Enroll></Enroll>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/category/${params.id}`),
       },
       {
         path: "/blog",
         element: <Blog></Blog>,
+      },
+      {
+        path: "/userprofile",
+        element: (
+          <PrivateRoute>
+            <UserProfile></UserProfile>
+          </PrivateRoute>
+        ),
       },
     ],
   },

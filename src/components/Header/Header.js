@@ -83,18 +83,20 @@ const Header = () => {
                   </>
                 )}
               </Nav>
-              <Nav.Link eventKey={2} href="#memes">
+              <Nav eventKey={2}>
                 {user?.uid ? (
-                  <Image
-                    src={user?.photoURL}
-                    style={{ height: "33px" }}
-                    roundedCircle
-                    title={user?.displayName}
-                  ></Image>
+                  <Link to="/userprofile">
+                    <Image
+                      src={user?.photoURL}
+                      style={{ height: "33px" }}
+                      roundedCircle
+                      title={user?.displayName}
+                    ></Image>
+                  </Link>
                 ) : (
                   <FaUserCircle className="fs-5 text" />
                 )}
-              </Nav.Link>
+              </Nav>
             </Nav>
           </Navbar.Collapse>
         </Container>
