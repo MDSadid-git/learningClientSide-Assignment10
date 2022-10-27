@@ -56,7 +56,7 @@ const Header = () => {
                   className="text-light text-decoration-none mt-2 me-2"
                   to="/courses"
                 >
-                  All Courses
+                  Courses
                 </Link>
               </Nav>
             </Nav>
