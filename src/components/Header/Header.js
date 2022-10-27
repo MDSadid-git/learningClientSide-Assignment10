@@ -46,6 +46,12 @@ const Header = () => {
                 >
                   About
                 </Link>
+                <Link
+                  className="text-light text-decoration-none mt-2 me-2"
+                  to="/courses"
+                >
+                  All Courses
+                </Link>
               </Nav>
             </Nav>
             <Nav>

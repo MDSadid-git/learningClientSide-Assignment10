@@ -8,6 +8,7 @@ import ErrorPage from "./Error/ErrorPage";
 import MernCart from "../components/pages/MernCart/MernCart";
 import PrivateNews from "../components/pages/NewsCarts/PrivateNews/PrivateNews";
 import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
+import Courses from "../components/pages/Courses/Courses";
 
 export const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ export const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/category/${params.id}`),
+      },
+      {
+        path: "courses",
+        element: <Courses></Courses>,
       },
     ],
   },

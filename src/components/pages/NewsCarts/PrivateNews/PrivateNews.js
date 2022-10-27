@@ -17,7 +17,8 @@ const PrivateNews = () => {
         <Card.Body>
           <Card.Title>{mainData?.title}</Card.Title>
           <Card.Text>{mainData?.details}</Card.Text>
-          <Button>{mainData.download}</Button>
+          {mainData?.download ? <Button>{mainData?.download}</Button> : ""}
+          {mainData?.downloadss ? <Button>{mainData?.downloadss}</Button> : ""}
         </Card.Body>
       </Card>
     </div>

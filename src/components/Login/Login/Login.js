@@ -1,5 +1,5 @@
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { FaGithub, FaGoogle } from "react-icons/fa";
@@ -11,8 +11,24 @@ const gitProvider = new GithubAuthProvider();
 const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { googleUserRegister, gitUserRegister } = useContext(AuthContext);
-  const handleFrom = () => {};
+  const { googleUserRegister, gitUserRegister, logInUser } =
+    useContext(AuthContext);
+  const [merror, setError] = useState("");
+  const handleFrom = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    logInUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        form.reset();
+      })
+      .catch((e) => {
+        console.error(e);
+        setError(e.message);
+      });
+  };
   const from2 = location.state?.from?.pathname || "/";
   const UserGoogle = () => {
     googleUserRegister(googleProvider)
@@ -38,9 +54,6 @@ const Login = () => {
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control type="email" name="email" placeholder="Enter email" />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -51,21 +64,23 @@ const Login = () => {
             placeholder="Password"
           />
         </Form.Group>
-
-        <Button variant="primary" type="submit">
-          Log in
-        </Button>
-        <Button
-          onClick={UserGoogle}
-          variant="info"
-          className="mx-2"
-          title="Sing in With google"
-        >
-          <FaGoogle />
-        </Button>
-        <Button onClick={UserGit} variant="info" title="Sing in With git">
-          <FaGithub />
-        </Button>
+        <Form.Text className="text-muted">{merror}</Form.Text>
+        <div>
+          <Button variant="primary" type="submit">
+            Log in
+          </Button>
+          <Button
+            onClick={UserGoogle}
+            variant="info"
+            className="mx-2"
+            title="Sing in With google"
+          >
+            <FaGoogle />
+          </Button>
+          <Button onClick={UserGit} variant="info" title="Sing in With git">
+            <FaGithub />
+          </Button>
+        </div>
       </Form>
     </div>
   );

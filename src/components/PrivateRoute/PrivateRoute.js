@@ -4,11 +4,11 @@ import { Navigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../../UserContext/UserContext";
 
 const PrivateRoute = ({ children }) => {
-  const { user, loading } = useContext(AuthContext);
+  const { user, loadin } = useContext(AuthContext);
   const location = useLocation();
 
-  if (loading) {
-    return <Spinner animation="border" variant="primary" />;
+  if (loadin) {
+    return <Spinner animation="border" variant="primary" className="mt-5" />;
   }
 
   if (!user) {
