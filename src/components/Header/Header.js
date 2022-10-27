@@ -94,7 +94,9 @@ const Header = () => {
                     ></Image>
                   </Link>
                 ) : (
-                  <FaUserCircle className="fs-5 text" />
+                  <>
+                    <FaUserCircle className="fs-5 text-white mt-2 ms-2" />
+                  </>
                 )}
               </Nav>
             </Nav>
