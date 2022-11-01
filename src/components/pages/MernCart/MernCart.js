@@ -1,7 +1,7 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
 import NewsCart from "../NewsCarts/NewsCarts";
-import "./NewsCart.css";
+// import "./NewsCart.css";
 const MernCart = () => {
   const merncart = useLoaderData();
   console.log(merncart);

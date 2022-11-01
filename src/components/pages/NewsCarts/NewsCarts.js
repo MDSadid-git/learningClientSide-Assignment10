@@ -7,7 +7,7 @@ const NewsCarts = ({ n: { title, img, details, id, pay } }) => {
   console.log(id);
   return (
     <div className="text-start">
-      <Card style={{ width: "18rem" }}>
+      <Card style={{ width: "95%" }}>
         <Card.Img variant="top" src={img} />
         <Card.Body>
           <Card.Title>{title}</Card.Title>
