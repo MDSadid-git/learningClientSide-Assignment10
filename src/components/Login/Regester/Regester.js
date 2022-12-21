@@ -50,6 +50,7 @@ const Regester = () => {
       .then((resul) => {
         const user = resul.user;
         console.log(user);
+        toast.success("google regester done!!!");
         navigate(from2, { replace: true });
       })
       .catch((e) => console.error(e));
@@ -59,6 +60,7 @@ const Regester = () => {
       .then((resul) => {
         const user = resul.user;
         console.log(user);
+        toast.success("git regester done!!!");
         navigate(from2, { replace: true });
       })
       .catch((e) => console.error(e));
