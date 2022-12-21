@@ -2,6 +2,7 @@ import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import React, { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { toast } from "react-hot-toast";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../UserContext/UserContext";
@@ -25,6 +26,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         // console.log(user);
+        toast.success("Login done!!!");
         form.reset();
         navigate(from2, { replace: true });
       })
@@ -38,6 +40,7 @@ const Login = () => {
     googleUserRegister(googleProvider)
       .then((resul) => {
         const user = resul.user;
+        toast.success("Login done with google");
         navigate(from2, { replace: true });
         console.log(user);
       })
@@ -48,6 +51,7 @@ const Login = () => {
       .then((resul) => {
         const user = resul.user;
         console.log(user);
+        toast.success("Login done with google");
         navigate(from2, { replace: true });
       })
       .catch((e) => console.error(e));
